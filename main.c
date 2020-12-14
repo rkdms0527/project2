@@ -24,7 +24,13 @@ int main(int argc, char *argv[]) {
 	int cnt;
 	
 	//1. FILE pointer open & error handling
-	//fill code here ----
+	
+	FILE *fp = fopen("schedule.dat", "r");
+	if (fp == NULL)
+	{
+		printf("File error\n");
+		return -1;
+	}
 	
 	//initializing the list
 	printf("Reading the data files... \n");
@@ -52,10 +58,15 @@ int main(int argc, char *argv[]) {
 	while(exit_flag == 0) 
 	{
 		//3. menu printing
-		//fill code here ---- 
+		printf("1. print all the schdules\n");
+		printf("2. search for schedules in the month\n");
+		printf("3. search for schedules in the place\n");
+		printf("4. search for specific type schedule\n");
+		printf("5. exit\n"); 
 		
 		//4. get option from keyboard
-		//fill code here ----
+		printf("select an option : \n");
+		scanf("%d", &option);
 		
 		
 		switch(option)
