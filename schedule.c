@@ -84,11 +84,22 @@ void sched_print(void* obj)
 void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 {
 	schedInfo_t* schedPtr;
+	schedPtr = (schedInfo_t*)malloc(5*sizeof(schedInfo_t));	
 	
 	//error handler
-
+	if (schedPtr == NULL)
+	{
+		printf("error\n");
+		return -1;
+	}
+	
 	//allocate memory and set the member variables
 	
+	strcpy(schedPtr->name, name);
+	strcpy(schedPtr->place, place);
+	schedPtr->type = type;
+	schedPtr->month = month;
+	schedPtr->day = day;
 	
 	return (void*)schedPtr;
 }
@@ -98,14 +109,34 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 //get month information from the scheduler info structure
 float sched_getMonth(void* obj)
 {
+	int getMonth;																					
+	schedInfo_t* schedPtr = (schedInfo_t*)obj;												
 	
+	if(schedPtr == NULL)																	//error handler
+	{
+		printf("error\n");
+	}
+	
+	getMonth = schedPtr->month;															//get month information																			
+	
+	return getMonth;
 }
 
 
 //get type information from the scheduler info structure
 int sched_getType(void* obj)
 {
+	int getType;																					
+	schedInfo_t* schedPtr = (schedInfo_t*)obj;												
 	
+	if(schedPtr == NULL)																	//error handler
+	{
+		printf("error\n");
+	}
+	
+	getType = schedPtr->type;															//get month information																			
+	
+	return getType;
 }
 
 
@@ -113,12 +144,55 @@ int sched_getType(void* obj)
 //get place string information from the scheduler info structure
 char* sched_getPlace(void* obj)
 {
-
+	char getPlace;																					
+	schedInfo_t* schedPtr = (schedInfo_t*)obj;												
+	
+	if(schedPtr == NULL)																	//error handler
+	{
+		printf("error\n");
+	}
+	
+	getPlace = schedPtr->place;															//get month information																			
+	
+	return getPlace;
 }
 
 //convert the name of the type into the enum(integer) value
 int sched_convertType(char* typeName)
 {
+	int integer;
 	
+	if(strcmp(typeName, "drama") == 0)
+	{
+		integer = 0;
+	}
+	else if(strcmp(typeName, "movie") == 0)
+	{
+		integer = 1;
+	}
+	else if(strcmp(typeName, "advertisement") == 0)
+	{
+		integer = 2;
+	}
+	else if(strcmp(typeName, "entertainment") == 0)
+	{
+		integer = 3;
+	}
+	else if(strcmp(typeName, "meeting") == 0)
+	{
+		integer = 4;
+	}
+	else if(strcmp(typeName, "fitness") == 0)
+	{
+		integer = 5;
+	}
+	else if(strcmp(typeName, "privacy") == 0)
+	{
+		integer = 6;
+	}
+	else
+		integer = -1;
+		
+	return integer;
 }
 
